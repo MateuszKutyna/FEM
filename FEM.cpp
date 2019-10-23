@@ -4,15 +4,29 @@ void FEM::fillNodesPosition() {
 	double dx, dy;
 	dx = data.W / (data.nW - 1);
 	dy = data.H / (data.nH - 1);
-	int j = 0, k = 0;
+	int j = 0, k = 0,m=0;
+	bool warunek;
 	for (size_t i = 0; i < data.nN; i++) {
 		if (i%data.nH == 0 && i != 0) {
 			j++;
 			k = 0;
 		}
+		if (i%data.nH == 0)
+		{
+			m += data.nH;
+			std::cout <<i<< m<<std::endl;
+		}
+		warunek = false;
+		//Tu jeszcze trzeba poprawic dla gornego brzegu
+		if (i<data.nH || i>=data.nN - data.nH||i%data.nH==0|| i % data.nH+data.nH == 0||i+1==m)
+			warunek = true;
 
-		nodes.emplace_back(dx * j, dy * k);
+		nodes.emplace_back(dx * j, dy * k, warunek);
 		k++;
+	}
+	for (size_t i = 0; i < data.nN; i++)
+	{
+		std::cout <<i+1<<": "<< nodes[i].warunek_brzegowy << std::endl;
 	}
 }
 void FEM::fillElementsWithNodes() {
