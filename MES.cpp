@@ -5,5 +5,14 @@ int main()
 	GlobalData data;
 	data.readFromFile("data.txt");
 	FEM fem(data);
-	fem.printElements();
+	universalElement test(data);
+	test.Complete();
+	for (int i = 0; i < data.integralPoints; i++) {
+		for (int j = 0; j < 4; j++) {
+			std::cout << test.Ni[i][j]<<" " ;
+		}
+		std::cout << std::endl;
+	}
+	//fem.printElements();
+
 }

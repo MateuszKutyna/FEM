@@ -30,6 +30,9 @@
     <ClInclude Include="FEM.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="universalElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Element.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="universalElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
