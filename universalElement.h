@@ -5,24 +5,29 @@ public:
 	GlobalData data;
 	std::vector<double> p;
 	std::vector<double> w;
-	std::vector<std::vector<double>> Ni;
+	std::vector<std::vector<double>> NiS;
+	std::vector<std::vector<double>> NiV;
 	std::vector<std::vector<double>> dNi_dE;
 	std::vector<std::vector<double>> dNi_dN;
-		
+		 
 	
+
+
+	universalElement() = default;
 	universalElement(const GlobalData& _data) :data(_data){
 		//Shape function and their derivatives
-		Ni.resize(data.integralPoints, std::vector<double>(data.integralPoints));
-		dNi_dE.resize(data.integralPoints, std::vector<double>(data.integralPoints));
-		dNi_dN.resize(data.integralPoints, std::vector<double>(data.integralPoints));
+		NiS.resize(8, std::vector<double>(4));
+		NiV.resize(8, std::vector<double>(4));
+		dNi_dE.resize(data.integralPoints, std::vector<double>(4));
+		dNi_dN.resize(data.integralPoints, std::vector<double>(4));
 
 		//Integral pontis and their wages
 		p.resize(data.integralPoints/sqrt(data.integralPoints));
 		w.resize(data.integralPoints/sqrt(data.integralPoints));
 		//Integral points cases 
 		if (data.integralPoints == 4) {
-			p[0] = -1 / sqrt(3);
-			p[1] = 1 / sqrt(3);
+			p[0] = -1.0 / sqrt(3);
+			p[1] = 1.0 / sqrt(3);
 			w[0] = 1;//Sum = 2
 			w[1] = 1;//
 		}
@@ -34,10 +39,13 @@ public:
 			w[1] = 8.0 / 9.0;//Sum = 2
 			w[2] = 5.0 / 9.0;//
 		}
+		Complete();
 	}
 	//To use class metods as a argument of function we need template
 	template<typename Fun>
 	void Fill(const Fun&, std::vector<std::vector<double>>&,int x );
+	template<typename FunN>
+	void FillN(const FunN&, std::vector<std::vector<double>>&,int x );
 
 	void Complete();
 	//Shape functions
@@ -59,12 +67,14 @@ public:
 };
 //Calculating for given points
 template<typename Fun>
+
 void universalElement::Fill(const Fun& shapeFunction, std::vector<std::vector<double>> &tab2D,int iterationNumber) {
 	if (data.integralPoints == 4) {
 			tab2D[0][iterationNumber] = shapeFunction(p[0], p[0]);
 			tab2D[1][iterationNumber] = shapeFunction(p[0], p[1]);
 			tab2D[2][iterationNumber] = shapeFunction(p[1], p[1]);
 			tab2D[3][iterationNumber] = shapeFunction(p[1], p[0]);
+
 	}
 	else if (data.integralPoints == 9) {
 		
@@ -79,4 +89,18 @@ void universalElement::Fill(const Fun& shapeFunction, std::vector<std::vector<do
 			tab2D[8][iterationNumber] = shapeFunction(p[1], p[1]);
 	}
 
+}
+template<typename FunN>
+void universalElement::FillN(const FunN& shapeFunction, std::vector<std::vector<double>> &tab2D, int iterationNumber) {
+	if (data.integralPoints == 4) {
+		tab2D[0][iterationNumber] = shapeFunction(-1 / sqrt(3), -1);
+		tab2D[1][iterationNumber] = shapeFunction(1 / sqrt(3), -1);
+		tab2D[2][iterationNumber] = shapeFunction(-1 / sqrt(3), 1);
+		tab2D[3][iterationNumber] = shapeFunction(1 / sqrt(3), 1);
+		tab2D[4][iterationNumber] = shapeFunction(-1, -1 / sqrt(3));
+		tab2D[5][iterationNumber] = shapeFunction(-1, 1 / sqrt(3));
+		tab2D[6][iterationNumber] = shapeFunction(1, -1 / sqrt(3));
+		tab2D[7][iterationNumber] = shapeFunction(1, 1 / sqrt(3));
+	}
+	else if (data.integralPoints == 9) {}
 }

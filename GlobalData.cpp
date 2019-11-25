@@ -8,8 +8,8 @@ void GlobalData::readFromFile(std::string file_name) {
 		exit(1);
 	}
 	std::string line;
-	std::array<double, 5> tab;
-	for (size_t i = 0; i < 5; i++) {
+	std::array<double, 9> tab;
+	for (size_t i = 0; i <9; i++) {
 		getline(file, line);
 		tab[i] = stod(line);
 	}
@@ -20,4 +20,10 @@ void GlobalData::readFromFile(std::string file_name) {
 	nN = nH * nW;
 	nE = (nH - 1)*(nW - 1);
 	integralPoints = tab[4];
+	k = tab[5];
+	alfa=tab[6];
+	cw = tab[7];
+	ro = tab[8];
+
+
 }

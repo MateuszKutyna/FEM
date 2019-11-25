@@ -1,7 +1,8 @@
 ﻿  pch.cpp
-c:\users\mateusz\source\repos\mes\mes\fem.h(9): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
-c:\users\mateusz\source\repos\mes\mes\universalelement.h(20): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
-c:\users\mateusz\source\repos\mes\mes\universalelement.h(21): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
+c:\users\mateusz\source\repos\mes\mes\fem.h(10): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
+c:\users\mateusz\source\repos\mes\mes\fem.h(11): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
+c:\users\mateusz\source\repos\mes\mes\universalelement.h(25): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
+c:\users\mateusz\source\repos\mes\mes\universalelement.h(26): warning C4244: 'argument': conversion from 'double' to 'const unsigned int', possible loss of data
   Element.cpp
   FEM.cpp
 c:\users\mateusz\source\repos\mes\mes\fem.cpp(17): warning C4018: '<': signed/unsigned mismatch
@@ -21,6 +22,7 @@ c:\users\mateusz\source\repos\mes\mes\globaldata.cpp(22): warning C4244: '=': co
           [
               _Ty=double
           ]
+  Jakobian.cpp
   MES.cpp
   Node.cpp
   universalElement.cpp

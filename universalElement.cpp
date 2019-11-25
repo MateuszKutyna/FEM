@@ -17,10 +17,15 @@ void universalElement::Complete() {
 	auto f3_dN = [=](double E, double N) { return this->dN3_dN(E, N); };
 	auto f4_dN = [=](double E, double N) { return this->dN4_dN(E, N); };
 
-	Fill(f1, Ni, 0);
-	Fill(f2, Ni, 1);
-	Fill(f3, Ni, 2);
-	Fill(f4, Ni, 3);
+	FillN(f1, NiS, 0);
+	FillN(f2, NiS, 1);
+	FillN(f3, NiS, 2);
+	FillN(f4, NiS, 3);
+
+	Fill(f1, NiV, 0);
+	Fill(f2, NiV, 1);
+	Fill(f3, NiV, 2);
+	Fill(f4, NiV, 3);
 
 	Fill(f1_dE, dNi_dE, 0);
 	Fill(f2_dE, dNi_dE, 1);
@@ -31,43 +36,51 @@ void universalElement::Complete() {
 	Fill(f2_dN, dNi_dN, 1);
 	Fill(f3_dN, dNi_dN, 2);
 	Fill(f4_dN, dNi_dN, 3);
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 4; j++) {
+			std::cout << NiS[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
 }
+//Jakobian
+
 // Shape functions
 double universalElement::N1(double E, double N){
-	return 1.0 / 4.0 * ((1.0 - E)*(1.0 - N));
+	return 0.25 * ((1.0 - E)*(1.0 - N));
 }
 double universalElement::N2(double E, double N){
-	return 1.0 / 4.0 * ((1.0 + E)*(1.0 - N));
+	return 0.25 * ((1.0 + E)*(1.0 - N));
 }
 double universalElement::N3(double E, double N){
-	return 1.0 / 4.0 * ((1.0 + E)*(1.0 + N));
+	return 0.25 * ((1.0 + E)*(1.0 + N));
 }
 double universalElement::N4(double E, double N){
-	return 1.0 / 4.0 * ((1.0 - E)*(1.0 + N));
+	return 0.25 * ((1.0 - E)*(1.0 + N));
 }
 //Derivative of a shape function (Xi)
 double universalElement::dN1_dE(double E,double N) {
-	return -1.0 / 4.0 * (1.0 - N);
+	return -0.25 * (1.0 - N);
 }
 double universalElement::dN2_dE(double E, double N) {
-	return 1.0 / 4.0 * (1.0 - N);
+	return  0.25 * (1.0 - N);
 }
 double universalElement::dN3_dE(double E, double N) {
-	return 1.0 / 4.0 * (1.0 + N);
+	return  0.25 * (1.0 + N);
 }
 double universalElement::dN4_dE(double E, double N) {
-	return -1.0 / 4.0 * (1.0 + N);
+	return  -0.25 * (1.0 + N);
 }
 //Derivative of a shape function (Eta)
 double universalElement::dN1_dN(double E, double N) {
-	return -1.0 / 4.0 * (1.0 - E);
+	return -0.25 * (1.0 - E);
 }
 double universalElement::dN2_dN(double E, double N) {
-	return -1.0 / 4.0 * (1.0 + E);
+	return -0.25 * (1.0 + E);
 }
 double universalElement::dN3_dN(double E, double N) {
-	return 1.0 / 4.0 * (1.0 + E);
+	return  0.25 * (1.0 + E);
 }
 double universalElement::dN4_dN(double E, double N) {
-	return 1.0 / 4.0 * (1.0 - E);
+	return  0.25 * (1.0 - E);
 }

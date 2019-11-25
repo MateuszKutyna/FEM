@@ -38,8 +38,7 @@ void FEM::fillElementsWithNodes() {
 
 
 void FEM::printElements() {
-	fillNodesPosition();
-	fillElementsWithNodes();
+	
 	for (size_t i = 0; i < data.nE; i++) {
 		std::cout << elements[i].ID << ":";
 		for (size_t j = 0; j < 4; j++) {
