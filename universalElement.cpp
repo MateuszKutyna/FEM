@@ -36,12 +36,6 @@ void universalElement::Complete() {
 	Fill(f2_dN, dNi_dN, 1);
 	Fill(f3_dN, dNi_dN, 2);
 	Fill(f4_dN, dNi_dN, 3);
-	for (int i = 0; i < 8; i++) {
-		for (int j = 0; j < 4; j++) {
-			std::cout << NiS[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
 }
 //Jakobian
 

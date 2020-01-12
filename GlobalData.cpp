@@ -8,8 +8,8 @@ void GlobalData::readFromFile(std::string file_name) {
 		exit(1);
 	}
 	std::string line;
-	std::array<double, 9> tab;
-	for (size_t i = 0; i <9; i++) {
+	std::array<double, 13> tab;
+	for (size_t i = 0; i <13; i++) {
 		getline(file, line);
 		tab[i] = stod(line);
 	}
@@ -24,6 +24,11 @@ void GlobalData::readFromFile(std::string file_name) {
 	alfa=tab[6];
 	cw = tab[7];
 	ro = tab[8];
-
+	t8 = tab[9];
+	dt = tab[10];
+	sim_time = tab[11];
+	for (int i = 0; i < nN; i++) {
+		t0.emplace_back(tab[12]);
+	}
 
 }

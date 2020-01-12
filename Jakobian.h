@@ -8,6 +8,7 @@ public:
 	std::vector<double> dy_dE;
 	std::vector<double> dy_dN;
 	std::vector<double> det_Jakobian;
+	std::vector<double> P;
 	std::vector<std::vector<double>> C;
 
 	std::vector<std::vector<double>> J1;
@@ -24,13 +25,14 @@ public:
 
 	GlobalData data;
 	universalElement *uni_ele;
-	FEM *siatka;
+	FEM siatka;
 	Jakobian() = default;
-	Jakobian(const GlobalData& _data) :data(_data) {
+	Jakobian(const GlobalData& _data,const FEM& _siatka) :data(_data),siatka(_siatka) {
 		dx_dE.resize(data.integralPoints);
 		dx_dN.resize(data.integralPoints);
 		dy_dE.resize(data.integralPoints);
 		dy_dN.resize(data.integralPoints);
+		P.resize(4);
 		C.resize(4, std::vector<double>(4)); //2D
 		det_Jakobian.resize(data.integralPoints);
 		J1.resize(data.integralPoints, std::vector<double>(4)); //2D
@@ -42,12 +44,14 @@ public:
 		H.resize(4, std::vector<double>(4));
 		Hbc.resize(4, std::vector<double>(4));
 		uni_ele = new universalElement(data);
-		siatka = new FEM(data);
+		
+		//siatka = new FEM(data);
 		
 	}
 
 	void calculate_H(int elementId);
 	void calculate_Hbc(int elementId);
 	void calculate_C(int elementId);
+	void calculate_P(int elementId);
 	void print_2D(std::vector<std::vector<double>> tab);
 };

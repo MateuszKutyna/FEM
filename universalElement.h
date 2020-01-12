@@ -95,12 +95,13 @@ void universalElement::FillN(const FunN& shapeFunction, std::vector<std::vector<
 	if (data.integralPoints == 4) {
 		tab2D[0][iterationNumber] = shapeFunction(-1 / sqrt(3), -1);
 		tab2D[1][iterationNumber] = shapeFunction(1 / sqrt(3), -1);
-		tab2D[2][iterationNumber] = shapeFunction(-1 / sqrt(3), 1);
-		tab2D[3][iterationNumber] = shapeFunction(1 / sqrt(3), 1);
-		tab2D[4][iterationNumber] = shapeFunction(-1, -1 / sqrt(3));
-		tab2D[5][iterationNumber] = shapeFunction(-1, 1 / sqrt(3));
-		tab2D[6][iterationNumber] = shapeFunction(1, -1 / sqrt(3));
-		tab2D[7][iterationNumber] = shapeFunction(1, 1 / sqrt(3));
+		tab2D[2][iterationNumber] = shapeFunction(1, -1 / sqrt(3));
+		tab2D[3][iterationNumber] = shapeFunction(1, 1 / sqrt(3));
+		tab2D[4][iterationNumber] = shapeFunction(1 / sqrt(3), 1);
+		tab2D[5][iterationNumber] = shapeFunction(-1 / sqrt(3), 1);
+		tab2D[6][iterationNumber] = shapeFunction(-1, 1 / sqrt(3));
+		tab2D[7][iterationNumber] = shapeFunction(-1, -1 / sqrt(3));
+		
 	}
 	else if (data.integralPoints == 9) {}
 }

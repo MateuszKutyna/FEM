@@ -9,8 +9,6 @@ struct FEM
 	FEM(const GlobalData &data1) :data(data1) {
 		nodes.reserve(data.nN);
 		elements.resize(data.nE);
-		//for (std::size_t i = 0; i < data.nN; ++i)
-		//	elements.emplace_back();
 		fillNodesPosition();
 		fillElementsWithNodes();
 	}
