@@ -224,7 +224,10 @@ void Jakobian::calculate_C(int elementId) {
 				C[i][j] += uni_ele->NiV[pc][i] * uni_ele->NiV[pc][j] * det_Jakobian[pc] * uni_ele->w[0] * uni_ele->w[1]*data.ro*data.cw;
 			}
 		}
+		
+
 	}
+	
 	
 }
 void Jakobian::calculate_P(int elementId) {

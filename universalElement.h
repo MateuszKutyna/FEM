@@ -1,5 +1,6 @@
 #pragma once
 #include"pch.h"
+#include"math.h"
 class universalElement {
 public:
 	GlobalData data;

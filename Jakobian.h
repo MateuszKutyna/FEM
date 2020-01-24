@@ -25,9 +25,9 @@ public:
 
 	GlobalData data;
 	universalElement *uni_ele;
-	FEM siatka;
+	Grid siatka;
 	Jakobian() = default;
-	Jakobian(const GlobalData& _data,const FEM& _siatka) :data(_data),siatka(_siatka) {
+	Jakobian(const GlobalData& _data,const Grid& _siatka) :data(_data),siatka(_siatka) {
 		dx_dE.resize(data.integralPoints);
 		dx_dN.resize(data.integralPoints);
 		dy_dE.resize(data.integralPoints);

@@ -4,9 +4,9 @@ int main()
 {
 	GlobalData data;
 	data.readFromFile("data1.txt");
-	FEM fem(data);
+	Grid fem(data);
 
-	Agregaction agre(data,fem);
+	Aggregation agre(data,fem);
 	agre.calculateTemperature();
 	
 }
